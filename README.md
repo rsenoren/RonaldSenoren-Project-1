@@ -4,6 +4,7 @@ Ronald Senoren's Project 1
 
 The files in this repository were used to configure the network depicted below.
 
+![alt text](https://github.com/rsenoren/RonaldSenoren-Project-1/blob/c90e7a93e6eb0619fa9d839605513741089ce195/Diagrams/RONALD%20RESOURCE%20GROUP%20DIAGRAM.drawio.png)
 RonaldSenoren-Project-1/Diagrams/RONALD RESOURCE GROUP DIAGRAM.drawio.png
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _____ file may be used to install only certain pieces of it, such as Filebeat.
@@ -25,10 +26,11 @@ The main purpose of this network is to expose a load-balanced and monitored inst
 
 Load balancing ensures that the application will be highly _____, in addition to restricting _____ to the network.
 - _TODO: What aspect of security do load balancers protect? What is the advantage of a jump box?_
+        Load balancers help prevent DDoS attacks. Jumpboxes have access to each system but connects to one node for easier monitoring.
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the _____ and system _____.
-- _TODO: What does Filebeat watch for?_
-- _TODO: What does Metricbeat record?_
+- _TODO: What does Filebeat watch for?_ monitors log files to collect log events
+- _TODO: What does Metricbeat record?_ records the metrics and statistics from the operation system and services running on a server.
 
 The configuration details of each machine may be found below.
 _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
@@ -68,15 +70,16 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
          
 The playbook implements the following tasks:
 -  TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
-- Install Docker
-- Install Python-pip
-- Install docker python module
-- Set the vm.max_map_count to 262144
-- Launch docker container: elk
+-     Install Docker
+-     Install Python-pip
+-     Install docker python module
+-     Set the vm.max_map_count to 262144
+-     Launch docker container: elk
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps_output.png)
+![alt text](https://github.com/rsenoren/RonaldSenoren-Project-1/blob/c90e7a93e6eb0619fa9d839605513741089ce195/Images/DOCKER_PS.png)
+RonaldSenoren-Project-1/Images/DOCKER_PS.png
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
@@ -95,13 +98,16 @@ These Beats allow us to collect the following information from each machine:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the _____ file to _____.
-- Update the _____ file to include...
-- Run the playbook, and navigate to ____ to check that the installation worked as expected.
+- Copy the ansible.cfg file to /etc/ansible.
+- Update the hosts file to include the Elk Server IP address of 10.3.0.4 under elkservers.
+- Run the playbook, and navigate to http://[your.VM.IP]:5601/app/kibana to check that the installation worked as expected..
 
 _TODO: Answer the following questions to fill in the blanks:_
 - _Which file is the playbook? Where do you copy it?_
+-     ELK_SERVER_INSTALL.yml; Ansible container folder /etc/ansible/files/
 - _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
+-     /etc/ansible/; Update "hosts" files and add new webserver group "elk" then add Elk IP to new webserver group  
 - _Which URL do you navigate to in order to check that the ELK server is running?
+-     20.109.18.79:5601/app/kibana
 
 _As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
